@@ -1,0 +1,121 @@
+@startuml
+annotation java.lang.Override
+annotation java.lang.SuppressWarnings
+class Domain.Init.Store
+class Domain.Payments.Adaptee.CashSubmit
+class Domain.Payments.Adaptee.CheckSubmit
+class Domain.Payments.Adaptee.CreditCardSubmit
+class Domain.Payments.MyAdapter
+class Domain.Payments.Target.CashPayment
+class Domain.Payments.Target.CheckPayment
+class Domain.Payments.Target.CreditCardPayment
+class Domain.Sales.Catalog
+class Domain.Sales.Product
+class Domain.Sales.Register
+class Domain.Sales.Sale
+class Domain.Taxes.LebanonTax
+class Domain.Taxes.Tax
+class TechnicalServices.Persistence.MyConnection
+class TechnicalServices.Persistence.PersistentStorage
+class TechnicalServices.Persistence.TransferFromDB
+class UI.Swing.processSaleJFrame
+class java.sql.Connection
+class java.sql.DriverManager
+class java.sql.PreparedStatement
+class java.sql.ResultSet
+class java.sql.SQLException
+class java.sql.Timestamp
+class java.util.ArrayList
+class java.util.Date
+class java.util.HashMap
+class java.util.List
+class java.util.Map
+class java.util.logging.Level
+class java.util.logging.Logger
+class javax.swing.DefaultListModel
+class javax.swing.JFrame
+class javax.swing.JOptionPane
+class javax.swing.event.ListSelectionEvent
+interface Domain.Payments.Adaptee.SubmitAdaptee
+interface Domain.Payments.PaymentADAPTER
+interface Domain.Payments.Target.PaymentADAPTER
+interface Domain.Taxes.TaxADAPTER
+Domain.Init.Store ..> Domain.Sales.Catalog
+Domain.Init.Store ..> Domain.Sales.Register
+Domain.Init.Store ..> UI.Swing.processSaleJFrame
+Domain.Init.Store ..> java.sql.SQLException
+Domain.Init.Store ..> java.util.logging.Level
+Domain.Init.Store ..> java.util.logging.Logger
+Domain.Payments.Adaptee.CashSubmit ..> java.lang.Override
+Domain.Payments.Adaptee.CashSubmit --|> Domain.Payments.Adaptee.SubmitAdaptee
+Domain.Payments.Adaptee.CheckSubmit ..> java.lang.Override
+Domain.Payments.Adaptee.CheckSubmit --|> Domain.Payments.Adaptee.SubmitAdaptee
+Domain.Payments.Adaptee.CreditCardSubmit ..> java.lang.Override
+Domain.Payments.Adaptee.CreditCardSubmit --|> Domain.Payments.Adaptee.SubmitAdaptee
+Domain.Payments.MyAdapter ..> java.lang.Override
+Domain.Payments.MyAdapter ..> Domain.Payments.Adaptee.CashSubmit
+Domain.Payments.MyAdapter ..> Domain.Payments.Adaptee.CheckSubmit
+Domain.Payments.MyAdapter ..> Domain.Payments.Adaptee.CreditCardSubmit
+Domain.Payments.MyAdapter ..> javax.swing.JOptionPane
+Domain.Payments.MyAdapter ..> Domain.Payments.Adaptee.SubmitAdaptee
+Domain.Payments.MyAdapter --|> Domain.Payments.PaymentADAPTER
+Domain.Payments.Target.CashPayment ..> java.lang.Override
+Domain.Payments.Target.CashPayment --|> Domain.Payments.Target.PaymentADAPTER
+Domain.Payments.Target.CheckPayment ..> java.lang.Override
+Domain.Payments.Target.CheckPayment --|> Domain.Payments.Target.PaymentADAPTER
+Domain.Payments.Target.CreditCardPayment ..> java.lang.Override
+Domain.Payments.Target.CreditCardPayment --|> Domain.Payments.Target.PaymentADAPTER
+Domain.Sales.Catalog ..> TechnicalServices.Persistence.TransferFromDB
+Domain.Sales.Catalog ..> java.util.ArrayList
+Domain.Sales.Catalog ..> java.util.HashMap
+Domain.Sales.Catalog ..> java.util.List
+Domain.Sales.Catalog ..> java.util.Map
+Domain.Sales.Product ..> java.lang.Override
+Domain.Sales.Register ..> Domain.Init.Store
+Domain.Sales.Register ..> Domain.Payments.Adaptee.CashSubmit
+Domain.Sales.Register ..> Domain.Payments.Adaptee.CheckSubmit
+Domain.Sales.Register ..> Domain.Payments.Adaptee.CreditCardSubmit
+Domain.Sales.Register ..> Domain.Payments.MyAdapter
+Domain.Sales.Register ..> TechnicalServices.Persistence.PersistentStorage
+Domain.Sales.Register ..> TechnicalServices.Persistence.TransferFromDB
+Domain.Sales.Register ..> java.sql.SQLException
+Domain.Sales.Register ..> java.sql.Timestamp
+Domain.Sales.Register ..> java.util.Date
+Domain.Sales.Sale ..> java.lang.Override
+Domain.Sales.Sale ..> java.sql.Timestamp
+Domain.Taxes.LebanonTax ..> java.lang.Override
+Domain.Taxes.LebanonTax ..> Domain.Sales.Register
+Domain.Taxes.LebanonTax --|> Domain.Taxes.TaxADAPTER
+Domain.Taxes.Tax ..> java.lang.Override
+TechnicalServices.Persistence.MyConnection ..> java.sql.Connection
+TechnicalServices.Persistence.MyConnection ..> java.sql.DriverManager
+TechnicalServices.Persistence.MyConnection ..> java.sql.SQLException
+TechnicalServices.Persistence.MyConnection ..> java.util.logging.Level
+TechnicalServices.Persistence.MyConnection ..> java.util.logging.Logger
+TechnicalServices.Persistence.PersistentStorage ..> Domain.Sales.Product
+TechnicalServices.Persistence.PersistentStorage ..> Domain.Sales.Sale
+TechnicalServices.Persistence.PersistentStorage ..> java.sql.PreparedStatement
+TechnicalServices.Persistence.PersistentStorage ..> java.sql.SQLException
+TechnicalServices.Persistence.PersistentStorage ..> java.util.logging.Level
+TechnicalServices.Persistence.PersistentStorage ..> java.util.logging.Logger
+TechnicalServices.Persistence.TransferFromDB ..> Domain.Sales.Product
+TechnicalServices.Persistence.TransferFromDB ..> Domain.Taxes.Tax
+TechnicalServices.Persistence.TransferFromDB ..> java.sql.PreparedStatement
+TechnicalServices.Persistence.TransferFromDB ..> java.sql.ResultSet
+TechnicalServices.Persistence.TransferFromDB ..> java.sql.SQLException
+TechnicalServices.Persistence.TransferFromDB ..> java.util.ArrayList
+TechnicalServices.Persistence.TransferFromDB ..> java.util.List
+TechnicalServices.Persistence.TransferFromDB ..> java.util.logging.Level
+TechnicalServices.Persistence.TransferFromDB ..> java.util.logging.Logger
+UI.Swing.processSaleJFrame ..> java.lang.SuppressWarnings
+UI.Swing.processSaleJFrame ..> Domain.Payments.MyAdapter
+UI.Swing.processSaleJFrame ..> Domain.Taxes.LebanonTax
+UI.Swing.processSaleJFrame ..> java.sql.SQLException
+UI.Swing.processSaleJFrame ..> java.util.ArrayList
+UI.Swing.processSaleJFrame ..> java.util.List
+UI.Swing.processSaleJFrame ..> javax.swing.DefaultListModel
+UI.Swing.processSaleJFrame --|> javax.swing.JFrame
+UI.Swing.processSaleJFrame ..> javax.swing.JOptionPane
+UI.Swing.processSaleJFrame ..> javax.swing.event.ListSelectionEvent
+Domain.Taxes.TaxADAPTER ..> Domain.Sales.Register
+@enduml
